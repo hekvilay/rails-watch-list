@@ -1,0 +1,51 @@
+<header style = "height: 50vh;
+  min-height: 500px;
+  background-image: url('https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1650&q=80');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;">
+  <div class="container h-100">
+    <div class="row h-100 align-items-center">
+      <div class="col-12 text-center">
+        <h1 class="fw-light" style = "color: white"><%= @list.name %></h1>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<div class = "container" style = "margin-top: 30px; margin-bottom: 30px">
+  <div class = "row" style = "margin-bottom: 30px">
+    <div class = "col-sm-8">
+    </div>
+    <div class = "col-sm-4">
+      <%= link_to 'Add a bookmark', new_list_bookmark_path(@list), :class=>"btn btn-primary" %>
+    </div>
+  </div>
+  <div class = "row">
+    <div class="card-deck">
+      <% @list.movies.each do |movie| %>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= movie.title %></h5>
+          <p class="card-text"><%= movie.overview %></p>
+          <div class = "container">
+            <div class = "row">
+              <div class = "col-sm-6">
+                <p><i>IDEA: Insert Bookmark comment</i></p>
+              </div>
+              <div class = "col-sm-6">
+                <%= link_to "Remove",
+                  bookmark_path(movie, @list),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" },
+                  :class=>"btn btn-danger"%>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
