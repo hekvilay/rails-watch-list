@@ -36,7 +36,7 @@
               </div>
               <div class = "col-sm-6">
                 <%= link_to "Remove",
-                  bookmark_path(movie, @list),
+                  bookmark_path(Bookmark.find_by(movie: movie, list: @list)),
                   method: :delete,
                   data: { confirm: "Are you sure?" },
                   :class=>"btn btn-danger"%>
